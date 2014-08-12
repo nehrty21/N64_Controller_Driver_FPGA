@@ -1,0 +1,242 @@
+-- Copyright (C) 1991-2013 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+
+-- PROGRAM		"Quartus II 64-Bit"
+-- VERSION		"Version 13.0.0 Build 156 04/24/2013 SJ Web Edition"
+-- CREATED		"Wed Apr 02 18:56:43 2014"
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all; 
+
+LIBRARY work;
+
+ENTITY n64_driver IS 
+	PORT
+	(
+		CLOCK_50 :  IN  STD_LOGIC;
+		GPIO0_2 :  IN  STD_LOGIC;
+		PB0 :  IN  STD_LOGIC;
+		GPIO_01 :  OUT  STD_LOGIC;
+		LEDR :  OUT  STD_LOGIC_VECTOR(17 DOWNTO 0)
+	);
+END n64_driver;
+
+ARCHITECTURE bdf_type OF n64_driver IS 
+
+COMPONENT polling
+GENERIC (J : INTEGER;
+			K : INTEGER;
+			L : INTEGER;
+			M : INTEGER;
+			N : INTEGER
+			);
+	PORT(clk : IN STD_LOGIC;
+		 done_polling : OUT STD_LOGIC;
+		 signal_out : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT sampling
+GENERIC (bit_count : INTEGER;
+			sampling : INTEGER
+			);
+	PORT(data_in : IN STD_LOGIC;
+		 clk : IN STD_LOGIC;
+		 done_polling : IN STD_LOGIC;
+		 data_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END COMPONENT;
+
+SIGNAL	data_out :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL	dff :  STD_LOGIC_VECTOR(17 DOWNTO 0);
+SIGNAL	done_polling :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_18 :  STD_LOGIC;
+
+
+BEGIN 
+
+
+
+b2v_inst : polling
+GENERIC MAP(J => 15000,
+			K => 200,
+			L => 50,
+			M => 150,
+			N => 1800
+			)
+PORT MAP(clk => CLOCK_50,
+		 done_polling => done_polling,
+		 signal_out => GPIO_01);
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(13) <= data_out(13);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(12) <= data_out(12);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(8) <= data_out(8);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(0) <= data_out(0);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(10) <= data_out(10);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(1) <= data_out(1);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(5) <= data_out(5);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(3) <= data_out(3);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(2) <= data_out(2);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(4) <= data_out(4);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(6) <= data_out(6);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(7) <= data_out(7);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(9) <= data_out(9);
+END IF;
+END PROCESS;
+
+
+SYNTHESIZED_WIRE_18 <= NOT(PB0);
+
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(14) <= data_out(14);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(11) <= data_out(11);
+END IF;
+END PROCESS;
+
+
+b2v_inst6 : sampling
+GENERIC MAP(bit_count => 200,
+			sampling => 150
+			)
+PORT MAP(data_in => GPIO0_2,
+		 clk => CLOCK_50,
+		 done_polling => done_polling,
+		 data_out => data_out);
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(17) <= data_out(17);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(16) <= data_out(16);
+END IF;
+END PROCESS;
+
+
+PROCESS(SYNTHESIZED_WIRE_18)
+BEGIN
+IF (RISING_EDGE(SYNTHESIZED_WIRE_18)) THEN
+	dff(15) <= data_out(15);
+END IF;
+END PROCESS;
+
+LEDR <= dff;
+
+END bdf_type;

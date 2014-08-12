@@ -1,0 +1,237 @@
+--******************************************************* 
+--             Written By Tim Nehring TJN12B
+--                     EEL 4746L
+--                  20 February 2014
+--                  n64testbench.vht
+--           Test bench for the n64testbench
+--*******************************************************
+LIBRARY ieee;                                               
+USE ieee.std_logic_1164.all;                                
+
+ENTITY n64_driver_test IS
+  GENERIC( N: INTEGER := 128;
+           M: INTEGER := 1600
+         ); 
+END n64_driver_test;
+
+ARCHITECTURE testing OF n64_driver_test IS
+-- constants                                                 
+-- signals                                                   
+
+SIGNAL		GPIO0_2    :  STD_LOGIC;
+SIGNAL		PB0        :  STD_LOGIC;
+SIGNAL    CLOCK_50   :  STD_LOGIC;
+SIGNAL		GPIO_01    :  STD_LOGIC;
+SIGNAL		LEDR       :  STD_LOGIC_VECTOR(17 DOWNTO 0);
+
+
+COMPONENT N64_DRIVER
+   	PORT
+	(
+		CLOCK_50 :  IN  STD_LOGIC;
+		GPIO0_2 :  IN  STD_LOGIC;
+		GPIO_01 :  OUT  STD_LOGIC;
+    PB0     :  IN  STD_LOGIC;
+		LEDR :  OUT  STD_LOGIC_VECTOR(17 DOWNTO 0)
+	);
+END COMPONENT;
+BEGIN
+   i1 : n64_driver
+   PORT MAP
+   (
+		CLOCK_50 => CLOCK_50,
+		GPIO0_2  => GPIO0_2, 
+		GPIO_01  => GPIO_01,
+    PB0      => PB0,
+		LEDR     => LEDR
+	);
+
+clock_run : PROCESS                                               
+BEGIN                                                        
+
+     FOR i IN 0 TO M-1 LOOP
+       clock_50 <= NOT clock_50;
+       WAIT FOR 10 ns;
+     END LOOP;
+
+
+END PROCESS clock_run;                                           
+
+
+
+always : PROCESS                                              
+BEGIN                                                         
+   
+  wait for 35 us;   
+--  GPIO0_2 <= '1';
+--  WAIT FOR 1 us ;
+  
+  ------bit 31 = 1------
+  GPIO0_2 <= '0';
+  WAIT FOR 1 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 3 us;
+  ------bit 30 = 0------
+  GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 29 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 28 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 27 = 0------
+  GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 26 = 0------
+   GPIO0_2 <= '0';
+   WAIT FOR 3 us;
+   GPIO0_2 <= '1';
+   WAIT FOR 1 us;
+  ------bit 25 = 0------
+  GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 24 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 23 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 22 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 21 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 20 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 19 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 18 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 17 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 16 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 15 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 14 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 13 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 12 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 11 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 10 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 09 = 0------
+  GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 08 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 07 = 1------
+  GPIO0_2 <= '0';
+  WAIT FOR 1 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 3 us;
+  ------bit 06 = 1------
+  GPIO0_2 <= '0';
+  WAIT FOR 1 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 3 us;
+  ------bit 05 = 1------
+  GPIO0_2 <= '0';
+  WAIT FOR 1 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 3 us;
+  ------bit 04 = 1------
+  GPIO0_2 <= '0';
+  WAIT FOR 1 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 3 us;
+  ------bit 03 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 02 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 01 = 0------
+    GPIO0_2 <= '0';
+  WAIT FOR 3 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 1 us;
+  ------bit 00 = 1------
+    GPIO0_2 <= '0';
+  WAIT FOR 1 us;
+  GPIO0_2 <= '1';
+  WAIT FOR 3 us;
+--  ------bit stop = 1-------
+--    GPIO0_2 <= '0';
+--  WAIT FOR 1 us;
+--  GPIO0_2 <= '1';
+--  WAIT FOR 3 us;
+ 
+ WAIT;                                                        
+END PROCESS;                                          
+END testing;

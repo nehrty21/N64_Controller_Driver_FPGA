@@ -1,0 +1,19 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {C:/Users/timot_000/Documents/school/fplds/n64driver31_march/sampling.vhd}
+vcom -93 -work work {C:/Users/timot_000/Documents/school/fplds/n64driver31_march/polling.vhd}
+vcom -93 -work work {C:/Users/timot_000/Documents/school/fplds/n64driver31_march/n64_driver.vhd}
+
+vcom -93 -work work {C:/Users/timot_000/Documents/school/fplds/n64_2april/../n64driver31_march/N64_driver_test.vhd}
+
+vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneii -L rtl_work -L work -voptargs="+acc"  n64_driver_test
+
+add wave *
+view structure
+view signals
+run 400 us

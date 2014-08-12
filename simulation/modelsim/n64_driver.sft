@@ -1,0 +1,5 @@
+set tool_name "ModelSim-Altera (VHDL)"
+set corner_file_list {
+	{{"Slow Model"} {n64_driver.vho n64_driver_vhd.sdo}}
+	{{"Fast Model"} {n64_driver_fast.vho n64_driver_vhd_fast.sdo}}
+}
